@@ -32,7 +32,7 @@ for line in file:
 			output.write(line[inici + 7:final])
 			output.write('\n')
 		elif line.find('https') != -1:
-			inici = line.find('http')
+			inici = line.find('https')
 			final = line.find('</url>')
 			output.write(line[inici + 8:final])
 			output.write('\n')
