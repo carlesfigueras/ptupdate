@@ -6,7 +6,7 @@
 # Note: This script is based on online-valid.xml PhishTank file
 #
 # Carles Figueras 2023
-# v 0.3
+# v 0.4
 
 import os
 import wget
@@ -26,21 +26,16 @@ print('\n')
 print('Extracting URLs...')
 for line in file:
         if (line.find('<url>') != -1) and (line.find('?') == -1):
-                if line.find('https') != -1:
-                        inici = line.find('https')
-                        final = line.find('</url>')
-                        text = '0.0.0.0 ' + line[inici + 8:final - 1]
-                        output.write(text)
-                        i = i + 1
-                        output.write('\n')
-                elif line.find('http') != -1:
+                if line.find('http') != -1:
                         inici = line.find('http')
                         final = line.find('</url>')
-                        text = '0.0.0.0 ' + line[inici + 7:final - 1]
-                        output.write(text)
-                        i = i + 1
+                        output.write(line[inici + 8:final])
                         output.write('\n')
-
+                elif line.find('https') != -1:
+                        inici = line.find('http')
+                        final = line.find('</url>')
+                        output.write(line[inici + 9:final])
+                        output.write('\n')
 
 print('Phishing URLs extracted: ', i)
 # Closing files
